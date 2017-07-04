@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="alurapic">
 	<head>
+		<base href="/">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title>Alurapic</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/custom.css">
 		<script src="js/lib/angular.min.js"></script>
+		<script src="js/lib/angular-animate.min.js"></script>
+		<script src="js/lib/angular-route.min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/controllers/photos-controller.js"></script>
 		<script src="js/directives/my-directives.js"></script>
 	</head>
-	<body ng-controller="PhotosController">
+	<body>
 	<div class="container">
-		<div class="jumbotron">
-			<h1 class="text-center">Alurapic</h1>
-		</div>
-		<div class="row">
 
-			<my-panel ng-repeat="photo in photos" titulo="{{photo.titulo}}">
-				<img class="img-responsive center-block" src="{{photo.url}}">
-			</my-panel>
+		<ng-view></ng-view>
 
-		</div><!-- fim row -->
-
-	</div><!-- fim container -->
+	</div>
 
 	</body>
 </html>
