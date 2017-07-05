@@ -5,6 +5,8 @@ var api = {}
 api.adiciona = function(req, res) {
     
     db.insert(req.body, function(err, newDoc) {
+
+        console.log(newDoc);
         if(err) return console.log(err);
         console.log('Adicionado com sucesso: ' + newDoc._id);
         res.json(newDoc._id);

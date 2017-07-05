@@ -18,4 +18,19 @@ angular.module('myDirectives', [])
 
            return ddo;
 
-       });
+       })
+    .directive('myPhoto', function () {
+        var ddo = {};
+
+        ddo.restrict = "E";
+        ddo.scope = {
+            titulo: '@',
+            url: '@'
+
+        };
+
+        ddo.templateUrl = 'js/directives/my-photo.html';
+
+        return ddo;
+
+    });
