@@ -3,6 +3,8 @@
     <h1 class="text-center">Alurapic - valeria</h1>
 </div>
 
+<p ng-show="message.length" class="alert alert-info">{{message}}</p>
+
 <div class="row">
     <div class="col-md-12">
         <form>
@@ -13,7 +15,7 @@
                         Nova foto
                     </a>
                 </span>
-                <input class="form-control" placeholder="filtrar pelo título da foto" ng-model="filtro" ng-model-options="{ debounce: 500 }">
+                <input class="form-control" placeholder="filtrar pelo título da foto" ng-model="filterPhoto" ng-model-options="{ debounce: 500 }">
             </div>
 
         </form>
@@ -21,11 +23,11 @@
 </div>
 
 <div class="row">
-    <my-panel class="col-md-2 painel-animado" ng-repeat="photo in photos | filter: filter" titulo="{{photo.titulo}}">
+    <my-panel class="col-md-2 painel-animado" ng-repeat="photo in photos | filter: filterPhoto" titulo="{{photo.titulo}}">
         <my-photo url="{{photo.url}}" titulo="{{photo.titulo}}"></my-photo>
 
-        <a class="btn btn-primary btn-block" href="">Edit</a>
-        <button class="btn btn-danger btn-block" >Remove</button>
+        <a class="btn btn-primary btn-block" href="/photos/edit/{{photo._id}}">Edit</a>
+        <button class="btn btn-danger btn-block" ng-click="remove(photo)">Remove</button>
 
     </my-panel>
 </div>

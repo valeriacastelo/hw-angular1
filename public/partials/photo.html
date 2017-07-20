@@ -4,22 +4,22 @@
 
 <p ng-show="message.length" class="alert alert-info">{{message}}</p>
 
-<form novalidate name="form" class="row" ng-submit="submeter()">
+<form novalidate name="photoForm" class="row" ng-submit="submeter()">
     <div class="col-md-6">
         <div class="form-group">
             <label>Título</label>
             <input name="titulo" class="form-control" ng-model="photo.titulo" ng-maxlength="20" required>
-            <span class="form-control alert-danger" ng-show="form.$submitted && form.titulo.$error.required">
+            <span class="form-control alert-danger" ng-show="photoForm.$submitted && photoForm.titulo.$error.required">
                 Título obrigatório
             </span>
-            <span ng-show="form.$submitted && form.titulo.$error.maxlength" class="form-control alert-danger">
+            <span ng-show="photoForm.$submitted && photoForm.titulo.$error.maxlength" class="form-control alert-danger">
                 No máximo 20 caracteres!
             </span>
         </div>
         <div class="form-group">
             <label>URL</label>
             <input name="url" class="form-control" ng-model="photo.url" required>
-            <span ng-show = "form.$submitted && form.url.$error.required"
+            <span ng-show = "photoForm.$submitted && photoForm.url.$error.required"
                   class="form-control alert-danger">
                 URL obrigatória
             </span>
@@ -30,7 +30,7 @@
             </textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">
+        <button type="submit" class="btn btn-primary" ng-disabled="photoForm.$invalid">
             Salvar
         </button>
         <a href="/" class="btn btn-primary">Voltar</a>
