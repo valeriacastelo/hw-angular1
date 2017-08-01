@@ -3,28 +3,27 @@
  */
 
 
-angular.module('alurapic').controller('PhotosController', function($scope, $http) {
+angular.module('alurapic').controller('PhotosController', function($scope, photosResource) {
 
     $scope.photos = [];
     $scope.filterPhoto = '';
     $scope.message = '';
 
-    $http.get('/v1/fotos')
-        .success(function (data) {
+    photosResource.query(function (data) {
             $scope.photos = data;
-        })
-        .error(function(erro) {
+        },
+        function(erro) {
             console.log(erro);
         });
 
     $scope.remove = function (photo) {
-        $http.delete('/v1/fotos/' + photo._id)
-            .success(function (data) {
+        photosResource.delete ({fotoId: photo._id},
+            function () {
                 var index = $scope.photos.indexOf(photo);
                 $scope.photos.splice(index, 1);
                 $scope.message = 'Foto ' + photo.titulo + ' removida com sucesso!';
-            })
-            .error(function(err) {
+            },
+            function(err) {
                 console.log(err);
                 $scope.message = 'Não foi possível apagar a foto ' + photo.titulo;
             });

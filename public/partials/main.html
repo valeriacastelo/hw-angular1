@@ -27,7 +27,6 @@
         <my-photo url="{{photo.url}}" titulo="{{photo.titulo}}"></my-photo>
 
         <a class="btn btn-primary btn-block" href="/photos/edit/{{photo._id}}">Edit</a>
-        <button class="btn btn-danger btn-block" ng-click="remove(photo)">Remove</button>
-
+        <my-danger-button nome="Remove" acao="remove(photo)" ></my-danger-button>
     </my-panel>
 </div>
