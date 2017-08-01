@@ -2,7 +2,7 @@
  * Created by Valeria on 04/07/2017.
  */
 
-angular.module('alurapic').controller('PhotoController', function($scope, $window, $routeParams, photosResource) {
+angular.module('alurapic').controller('PhotoController', function($scope, $window, $routeParams, photosResource, photosRegister) {
 
     $scope.photo = {};
     $scope.message = '';
@@ -21,29 +21,14 @@ angular.module('alurapic').controller('PhotoController', function($scope, $windo
     $scope.submeter = function() {
         if ($scope.photoForm.$valid) {
 
-            if($routeParams.photoId) {
-                photosResource.update({fotoId: $scope.photo._id}, $scope.photo,
-                    function (data) {
-                        console.log(data)
-                        $scope.message = 'Foto atualizada com sucesso';
-                        //$window.location.href = "/";
-                    },
-                    function (error) {
-                        console.log(error);
-                        $scope.message = 'Não foi possível atualizar a foto';
-                    });
-
-            } else {
-                photosResource.save($scope.photo,
-                        function() {
-                            $scope.message = 'Foto cadastrada com sucesso';
-                            $window.location.href = "/";
-                        },
-                        function (error) {
-                            console.log(error);
-                            $scope.message = 'Não foi possível cadastrar a foto';
-                    });
-            }
+            photosRegister.register($scope.photo)
+                .then(function(data) {
+                    $scope.message = data.mensagem;
+                    /*if (data.inclusao) $scope.photo = {};*/
+                })
+                .catch(function(error) {
+                    $scope.message = error.mensagem;
+                });
         } else {
             console.log("invalido");
         }
